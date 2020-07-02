@@ -9,7 +9,7 @@ Recolectando información de un servidor Web de forma pasiva y activa.
 
 ## Uso
 Este proyecto solo usa modules estandar, con excepcion de **requests**
-que no esta instalado en todos los sistemas, tu puedes instalar usando...``pip install requests``
+que no esta instalado en todos los sistemas, tu puedes instalarlo usando...``pip install requests``
 
 ```bash
 chmod +x infoweb.py
