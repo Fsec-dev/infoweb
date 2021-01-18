@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-# Coded by Andrew
 
 import os, sys, random
 import requests, socket
 import subprocess
 import json
 
-__version__ = "1.0"
-__author__ = "Andrew - Fsec-Dev"
+__version__ = "1.1"
+__author__ = "Alex"
 __dateDev__ = "2020"
+__email__ = "anonuser_2.0@protonmail.com"
 
 # Colores para la terminal (solo Linux)
 R = "\033[1;31m" # Rojo
@@ -25,9 +25,9 @@ def banner():
 \t| | \\| |    |__| |_|_| |___ |__]
 ---------------------------------------------------  
 \t   - Information Gathering -
-Version: {} Author: {} Release: {}        			
+Version: {} | Author: {} | Email: {}        			
 --------------------------------------------------- 				                 
-	""".format(__version__, __author__, __dateDev__) + N
+	""".format(__version__, __author__, __email__) + N
 
 # Funcion encargada de lanzarnos un USERAGENT de forma aleatoria
 def randomUA():
@@ -111,10 +111,16 @@ if __name__ == '__main__':
 	else:
 		if sys.argv[1] in ['--help', '-h']:
 			banner()
-			print W + "\nUso: {} <target>\n".format(sys.argv[0]) + N
+			print W + "Uso: {} <target>\n".format(sys.argv[0]) + N
 			print W + "Ejemplo: {} https://www.google.com\n".format(sys.argv[0]) + N
 		else:
-			if not sys.argv[1].startswith("http") == True:
-				main("http://" + sys.argv[1])
+			url = sys.argv[1]
+			# Quitando el "/" de la ultima parte de la URL para no tener problemas con
+			# la libreria requests.
+			if '/' is url[-1]:
+				url = url[0:-1]
+			# Si la url no especifica el tipo de protocolo asignar uno (http)
+			if not url.startswith("http") == True:
+				main("http://" + url)
 			else:
-				main(sys.argv[1])
+				main(url)
